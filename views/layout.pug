@@ -2,6 +2,13 @@ doctype html
 html
   head
     title= title
+    script(src='https://code.jquery.com/jquery-1.11.1.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    // my content is inserted here
     block content
+      //watching if input is checked in by user
+    script(src='/javascripts/appFrontEnd.js')
+      //import io to front js
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js')
+    //script(src='https://cdn.socket.io/socket.io-1.2.0.js')
