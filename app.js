@@ -26,18 +26,55 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-//====== Socket.IO ====
+//====================== Socket.IO ====================================
 
+
+//Start connection to Socket.io
 io.on("connection", (socket) => {
-    //watching emit from the front-end app.js
+
+    //Once the webpage is open the function "subscribe" on frontend calls that function
+    socket.on("subscribe", (data) => {
+    console.log("Subscribe > topic: " + data.topic);
+    // mqtt_client.on("message"subscribe topic light-1/state
+    mqtt_client.subscribe(data.topic);
+    });
+
+    // Listen message from MQTT broker
+    mqtt_client.on("message", (topic, message) => {
+        //Start with the last one kept in the mqqt-retain
+        let light1_state = undefined;
+    console.log('Received message %s %s', topic, message)
+        switch (topic) {
+            case "home/kitchen/light-1/state":
+                if (light1_state !== "ON" && message.toString().toLowerCase() === "on") {
+                    light1_state = "ON";
+                }
+                else if (light1_state !== "OFF" && message.toString().toLowerCase() === "off") {
+                    light1_state = "OFF";
+                }
+
+                // Send to WebSocket (change the button position to On/off)
+                socket.emit("mqtt-message", { topic: "home/kitchen/light-1/state", message: light1_state });
+                break;
+            case "future ops":
+                break;
+        }
+
+    });
+
+
+    //Listening socket.emit('publish' from the front-end app.js
     socket.on("publish", (data) => {
     console.log("Publish > topic: " + data.topic + ", message: " + data.message);
-// mqtt_client publish to broker
-mqtt_client.publish(data.topic, data.message, { qos: 1, retain: true });
-}); //subscribe to checked button
-}); //connection
+    // mqtt_client publish to broker
+    mqtt_client.publish(data.topic, data.message, { qos: 1, retain: true });
+    }); //subscribe to checked button
 
-//=======================
+
+
+}); //socket.io connection
+
+//=======================================================================
 
 
 // catch 404 and forward to error handler
