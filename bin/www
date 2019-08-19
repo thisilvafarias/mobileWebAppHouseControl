@@ -12,7 +12,7 @@ var debug = require('debug')('googlesmartvoicecontrol:server');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3004');
+var port = normalizePort(process.env.PORT || '3001');
 app.set('port', port);
 
 /**

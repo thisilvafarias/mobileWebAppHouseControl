@@ -37,10 +37,10 @@ $(document).ready(function () {
     $('#light-1').change(function () {
         console.log($(this).is(":checked")) //console in the browser
         if ($(this).is(":checked")) {
-            socket.emit('publish', { topic: "home/kitchen/light-1/state", message: "on" });
+            socket.emit('publish', { topic: "home/kitchen/light-1/state", message: "ON" });
         }
         else {
-            socket.emit('publish', { topic: "home/kitchen/light-1/state", message: "off" });
+            socket.emit('publish', { topic: "home/kitchen/light-1/state", message: "OFF" });
         }
     });//func change
 });//Once the DOM is ready, the JavaScript function is executed.

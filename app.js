@@ -11,7 +11,8 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var mqtt = require('mqtt');
-var mqtt_client = mqtt.connect('mqtt://localhost');
+var mqtt_client = mqtt.connect('mqtt://192.168.0.200:1883');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -67,6 +68,7 @@ io.on("connection", (socket) => {
     socket.on("publish", (data) => {
     console.log("Publish > topic: " + data.topic + ", message: " + data.message);
     // mqtt_client publish to broker
+
     mqtt_client.publish(data.topic, data.message, { qos: 1, retain: true });
     }); //subscribe to checked button
 
