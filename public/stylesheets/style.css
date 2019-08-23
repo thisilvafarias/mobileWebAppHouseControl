@@ -1,8 +1,14 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background: #f8cc1f;
 }
 
-a {
-  color: #00B7FF;
+
+.grid-1 {
+    padding-top: 40px;
+    display: grid;
+    width: 75%;
+    max-width: 550px;
+    margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
 }

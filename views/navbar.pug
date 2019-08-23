@@ -1,0 +1,30 @@
+block navbar
+    nav#mySidebar.w3-sidebar.w3-bar-block.w3-card
+        div.w3-container.w3-theme-l1
+            span(type='span' class=' w3-button w3-display-topright w3-large' onclick='closeSidebar()')
+                | x
+            div.w3-padding.w3-center
+
+                img.w3-circle(src='/images/me.png' width='75%' atl='me' )
+
+        a(class='w3-bar-item w3-button', href='#') My Profile
+        a(class='w3-bar-item w3-button', href='#') Settings
+        a(class='w3-bar-item w3-button', href='#') About
+
+    header.w3-top.w3-bar.w3-theme-l1
+
+        button(type='button' class=' w3-bar-item w3-button w3-xxxlarge w3-hover-theme' value="Read More" onclick='openSidebar()') &#9776
+        h1.w3-bar-item  My House
+
+    div.w3-container(style="margin-top: 90px;")
+
+
+    script.
+        closeSidebar();
+        function openSidebar() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+
+        function closeSidebar() {
+            document.getElementById("mySidebar").style.display = "none";
+        }

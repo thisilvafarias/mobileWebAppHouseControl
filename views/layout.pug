@@ -1,16 +1,20 @@
 doctype html
 html
-  head
-    title= title
-    script(src='https://code.jquery.com/jquery-1.11.1.js')
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-      // my content is inserted here
-      block content
-        //watching if input is checked in by user
-      script(src='/javascripts/appFrontEnd.js')
-        //import io to front js
-      script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js')
-      //script(src='https://cdn.socket.io/socket.io-1.2.0.js')
+head
 
-      include footer.pug
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  title Smart House
+  script(src='https://code.jquery.com/jquery-1.11.1.js')
+  link(rel='stylesheet', href='/stylesheets/style.css')
+
+  link(rel='stylesheet', href='https://www.w3schools.com/w3css/4/w3pro.css')
+  link(rel='stylesheet', href='https://www.w3schools.com/lib/w3-theme-teal.css')
+  link(rel='stylesheet', href='https://www.w3schools.com/w3css/4/w3.css')
+  link(rel='stylesheet', href='https://www.w3schools.com/lib/w3-theme-black.css')
+
+body
+  include navbar
+    // my content is inserted here
+  block content
+  include extends/scripts
+  include footer
