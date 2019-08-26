@@ -5,14 +5,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//var livingRoom = require('./routes/livingRoom');
+
 
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var mqtt = require('mqtt');
-var mqtt_client = mqtt.connect('mqtt://192.168.0.200:1883');
-
+//var mqtt_client = mqtt.connect('mqtt://192.168.0.200:1883');
+var mqtt_client = mqtt.connect('mqtt://localhost:1883');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,8 +25,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Client request on of those pages
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/livingRoom', livingRoom);
+
+
 
 //====================== Socket.IO ====================================
 
